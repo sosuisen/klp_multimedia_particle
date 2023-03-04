@@ -34,10 +34,10 @@ const tx = PIXI.Texture.from('kyoco_trans256x256.png');
 const initSprite = spr => {
   // 中心位置を指定
   spr.anchor.set(0.5);
-  // 左右の開始位置をずらす
-  spr.x = Math.random() * app.screen.width;
-  // 上下の開始位置をずらす（負の値なので画面外）
-  spr.y = - Math.random() * app.screen.height;
+  // 上下の開始位置をずらす
+  spr.y = Math.random() * app.screen.height;
+  // 左右の開始位置をずらす（負の値なので画面外）
+  spr.x = - Math.random() * app.screen.width;
   // サイズを変更
   // Math.random()は 0以上1未満の値を返す
   spr.scale.set(Math.random()/2);
@@ -47,8 +47,9 @@ const initSprite = spr => {
   // 以下は独自プロパティ
   // speedプロパティを追加して、速度を格納しておく
   spr.speed = 1 + Math.random() * 3;
-  // orgXプロパティを追加して、元のx座標をコピーしておく
-  spr.orgX = spr.x;
+
+  // orgYプロパティを追加して、元のy座標をコピーしておく
+  spr.orgY = spr.y;
 
   return spr;
 };
@@ -78,19 +79,15 @@ app.ticker.add(delta => {
   time += delta;
 
   particles.children.forEach(spr => {
-    // まっすぐ落ちる
-    spr.x = spr.orgX;
-    // 元のx座標に対して、最大でスプライト幅の半分までsin関数で左右にゆらぐ
-    spr.x = spr.orgX + spr.width / 2.0 * Math.sin(time/50);
+    // 元のy座標に対して、最大でスプライト幅の半分までsin関数で上下にゆらぐ
+    spr.y = spr.orgY + spr.width / 2.0 * Math.sin(time/50);
 
-    // どれも同じ速度で落ちる
-    spr.y += 3;
-    // y座標をそれぞれのspeedの値だけ増やす場合
-    // spr.y += spr.speed;
+    // x座標をそれぞれのspeedの値だけ増やす場合
+    spr.x += spr.speed;
 
-    // 下端に達したスプライトは上へ戻す
+    // 右端に達したスプライトは左端へ戻す
     // スプライトの座標原点は中心なので、サイズの半分を足しておく
-    if (spr.y > app.screen.height + spr.width / 2.0) {
+    if (spr.x > app.screen.width + spr.width / 2.0) {
       initSprite(spr);
     }
   })
