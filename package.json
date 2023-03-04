@@ -1,0 +1,18 @@
+{
+  "name": "kcg_multimedia_particle",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "@pixi/particle-emitter": "^5.0.8",
+    "pixi.js": "^7.1.3"
+  }
+}
