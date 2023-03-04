@@ -35,9 +35,9 @@ const initSprite = spr => {
   // 中心位置を指定
   spr.anchor.set(0.5);
   // 左右の開始位置をずらす
-  spr.x = Math.random() * app.screen.width;
+  spr.x = mouseX;
   // 上下の開始位置をずらす（負の値なので画面外）
-  spr.y = - Math.random() * app.screen.height;
+  spr.y = mouseY;
   // サイズを変更
   // Math.random()は 0以上1未満の値を返す
   spr.scale.set(Math.random()/2);
@@ -53,13 +53,6 @@ const initSprite = spr => {
   return spr;
 };
 
-for (let i = 0; i < maxSprites/2; i++){
-  // 同じテクスチャを使いまわす
-  const kyoco = PIXI.Sprite.from(tx);
-  initSprite(kyoco);
-  particles.addChild(kyoco);
-}
-
 /**
  * マウスの位置取得
  */
@@ -71,6 +64,10 @@ app.stage.on('pointerdown', event => {
     console.log(`[stage] screen(${event.screen.x}, ${event.screen.y}))`);
     mouseX = event.screen.x;
     mouseY = event.screen.y;
+
+    const kyoco = PIXI.Sprite.from(tx);
+    initSprite(kyoco);
+    particles.addChild(kyoco);  
 });
 
 let time = 0.0;
@@ -78,20 +75,10 @@ app.ticker.add(delta => {
   time += delta;
 
   particles.children.forEach(spr => {
-    // まっすぐ落ちる
-    spr.x = spr.orgX;
     // 元のx座標に対して、最大でスプライト幅の半分までsin関数で左右にゆらぐ
-    // spr.x = spr.orgX + spr.width / 2.0 * Math.sin(time/50);
+    spr.x = spr.orgX + spr.width / 2.0 * Math.sin(time/50);
 
-    // どれも同じ速度で落ちる
-    spr.y += 3;
     // y座標をそれぞれのspeedの値だけ増やす場合
-    // spr.y += spr.speed;
-
-    // 下端に達したスプライトは上へ戻す
-    // スプライトの座標原点は中心なので、サイズの半分を足しておく
-    if (spr.y > app.screen.height + spr.width / 2.0) {
-      initSprite(spr);
-    }
+    spr.y += spr.speed;
   })
 });
