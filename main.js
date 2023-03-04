@@ -67,7 +67,7 @@ let mouseX = 0;
 let mouseY = 0;
 app.stage.interactive = true;
 app.stage.hitArea = app.screen; // app.stageをinteractiveにするときは必須。
-app.stage.on('pointermove', event => {
+app.stage.on('pointerdown', event => {
     console.log(`[stage] screen(${event.screen.x}, ${event.screen.y}))`);
     mouseX = event.screen.x;
     mouseY = event.screen.y;
