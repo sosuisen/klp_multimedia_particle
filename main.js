@@ -59,12 +59,14 @@ for (let i = 0; i < maxSprites/2; i++){
 }
 
 /**
- * マウスの位置取得
+ * マウスの位置取得(発展課題で使ってください)
  */
 let mouseX = 0;
 let mouseY = 0;
-app.stage.interactive = true;
-app.stage.hitArea = app.screen; // app.stageをinteractiveにするときは必須。
+app.stage.eventMode = 'static';
+// app.stageのeventModeをstaticにしてstage上のイベントを取得する場合は
+// hitArea = app.screenが必須。
+app.stage.hitArea = app.screen;
 app.stage.on('pointerdown', event => {
     console.log(`[stage] screen(${event.screen.x}, ${event.screen.y}))`);
     mouseX = event.screen.x;
