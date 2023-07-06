@@ -1,27 +1,11 @@
 import * as PIXI from 'pixi.js'
-import { EventBoundary, Graphics } from 'pixi.js';
 
 const app = new PIXI.Application({ antialias: true, width: 800, height: 600 });
 
 document.body.appendChild(app.view);
 
-// 表示をする画像の最大数を指定
-let maxSprites = 200;
-// const maxSprites = 1000;
 
 const particles = new PIXI.Container();
-// （参考）最も処理効率を高くする場合、ParticleContainerを用いる。
-// ただし、処理効率の代わりに、マスク、フィルタ、テクスチャの変更などの
-// 高度な機能が使えない。
-// https://pixijs.download/dev/docs/PIXI.ParticleContainer.html
-/*
-const particles = new PIXI.ParticleContainer(maxSprites, {
-  vertices: true, // scaleを変更する場合はtrue
-  position: true, // positionを変更する場合はtrue
-  rotation: true, // rotationを変更する場合はtrue
-});
-*/
-
 app.stage.addChild(particles);
 
 // テクスチャのサイズは縦横ともに2のべき乗とするのが最も処理効率がよい。
