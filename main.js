@@ -93,12 +93,12 @@ app.ticker.add(delta => {
     // まっすぐ落ちる
     spr.x = spr.orgX;
     // 元のx座標に対して、最大でスプライト幅の半分までsin関数で左右にゆらぐ
-     spr.x = spr.orgX + spr.width / 2.0 * Math.sin(time/50);
+    // spr.x = spr.orgX + spr.width / 2.0 * Math.sin(time/50);
 
     // どれも同じ速度で落ちる
     spr.y += 3;
     // y座標をそれぞれのspeedの値だけ増やす場合
-    spr.y += spr.speed;
+    // spr.y += spr.speed;
 
     // 下端に達したスプライトは上へ戻す
     // スプライトの座標原点は中心なので、サイズの半分を足しておく
