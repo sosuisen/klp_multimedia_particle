@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "@pixi/particle-emitter": "^5.0.8",
-    "pixi.js": "^7.1.3"
+    "pixi.js": "^7.2.4"
   }
 }
