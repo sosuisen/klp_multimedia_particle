@@ -58,8 +58,10 @@ const initSprite = spr => {
  */
 let mouseX = 0;
 let mouseY = 0;
-app.stage.interactive = true;
-app.stage.hitArea = app.screen; // app.stageをinteractiveにするときは必須。
+app.stage.eventMode = 'static';
+// app.stageのeventModeをstaticにしてstage上のイベントを取得する場合は
+// hitArea = app.screenが必須。
+app.stage.hitArea = app.screen;
 app.stage.on('pointerdown', event => {
     console.log(`[stage] screen(${event.screen.x}, ${event.screen.y}))`);
     mouseX = event.screen.x;
