@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js'
-import { EventBoundary, Graphics } from 'pixi.js';
 
 const app = new PIXI.Application({ antialias: true, width: 800, height: 600 });
 
