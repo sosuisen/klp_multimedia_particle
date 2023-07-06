@@ -6,7 +6,7 @@ const app = new PIXI.Application({ antialias: true, width: 800, height: 600 });
 document.body.appendChild(app.view);
 
 // 表示をする画像の最大数を指定
-let maxSprites = 200;
+let maxSprites = 100;
 // const maxSprites = 1000;
 
 const particles = new PIXI.Container();
@@ -51,7 +51,7 @@ const initSprite = spr => {
   return spr;
 };
 
-for (let i = 0; i < maxSprites/2; i++){
+for (let i = 0; i < maxSprites; i++){
   // 同じテクスチャを使いまわします
   const kyoco = PIXI.Sprite.from(tx);
   initSprite(kyoco);
