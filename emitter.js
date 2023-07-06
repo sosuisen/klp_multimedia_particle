@@ -6,8 +6,8 @@ const app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0xf
 document.body.appendChild(app.view);
 let mouseX = 0;
 let mouseY = 0;
-app.stage.interactive = true;
-app.stage.hitArea = app.screen; // app.stageをinteractiveにするときは必須。
+app.stage.eventMode = 'static';
+app.stage.hitArea = app.screen;
 app.stage.on('pointerdown', event => {
     console.log(`[stage] screen(${event.screen.x}, ${event.screen.y}))`);
     emitter.emit = true;
